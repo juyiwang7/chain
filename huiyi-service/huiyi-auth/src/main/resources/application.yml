@@ -1,0 +1,28 @@
+server:
+  port: 8005
+
+spring:
+  application:
+    name: huiyi-auth
+   # 资源信息
+  messages:
+    # 国际化资源文件路径
+    basename: i18n/messages
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  profiles: 
+    active: dev
+  main:
+    allow-bean-definition-overriding: true
+  
+feign: 
+  hystrix: 
+    enabled: true
+ 
+# 暴露监控端点
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'

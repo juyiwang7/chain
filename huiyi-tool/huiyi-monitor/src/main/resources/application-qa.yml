@@ -1,0 +1,4 @@
+eureka:
+  client: #客户端注册进eureka服务列表内
+    service-url:
+      defaultZone: http://172.16.112.38:7001/eureka

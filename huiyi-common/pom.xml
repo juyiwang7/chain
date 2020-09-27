@@ -1,0 +1,19 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.huiyi.chain</groupId>
+        <artifactId>huiyi-chain</artifactId>
+        <version>1.1.0-SNAPSHOT</version>
+    </parent>
+    <artifactId>huiyi-common</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>huiyi-common-core</module>
+        <module>huiyi-common-redis</module>
+        <module>huiyi-common-log</module>
+        <module>huiyi-common-auth</module>
+        <module>huiyi-common-swagger</module>
+    </modules>
+</project>

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.huiyi.biz.mapper.WelfareProjectMapper">
+    
+    <resultMap type="WelfareProject" id="WelfareProjectResult">
+        <result property="id"    column="id"    />
+        <result property="name"    column="name"    />
+        <result property="type"    column="type"    />
+        <result property="location"    column="location"    />
+        <result property="period"    column="period"    />
+        <result property="manager"    column="manager"    />
+        <result property="phone"    column="phone"    />
+        <result property="description"    column="description"    />
+        <result property="status"    column="status"    />
+        <result property="gmtCreate"    column="gmt_create"    />
+        <result property="gmtModified"    column="gmt_modified"    />
+        <result property="operator"    column="operator"    />
+        <result property="isDelete"    column="is_delete"    />
+        <result property="ptId"    column="pt_id"    />
+    </resultMap>
+
+    <sql id="selectWelfareProjectVo">
+        select id, name, type, location, period, manager, phone, description, status, gmt_create, gmt_modified, operator, is_delete, pt_id from welfare_project
+    </sql>
+
+    <select id="selectWelfareProjectList" parameterType="WelfareProject" resultMap="WelfareProjectResult">
+        <include refid="selectWelfareProjectVo"/>
+        <where>  
+            <if test="name != null  and name != ''"> and name like concat('%', #{name}, '%')</if>
+        </where>
+    </select>
+    
+    <select id="selectWelfareProjectById" parameterType="Long" resultMap="WelfareProjectResult">
+        <include refid="selectWelfareProjectVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertWelfareProject" parameterType="WelfareProject">
+        insert into welfare_project
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null ">id,</if>
+            <if test="name != null  and name != ''">name,</if>
+            <if test="type != null  and type != ''">type,</if>
+            <if test="location != null  and location != ''">location,</if>
+            <if test="period != null ">period,</if>
+            <if test="manager != null  and manager != ''">manager,</if>
+            <if test="phone != null  and phone != ''">phone,</if>
+            <if test="description != null  and description != ''">description,</if>
+            <if test="status != null ">status,</if>
+            <if test="gmtCreate != null ">gmt_create,</if>
+            <if test="gmtModified != null ">gmt_modified,</if>
+            <if test="operator != null  and operator != ''">operator,</if>
+            <if test="isDelete != null ">is_delete,</if>
+            <if test="ptId != null ">pt_id,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null ">#{id},</if>
+            <if test="name != null  and name != ''">#{name},</if>
+            <if test="type != null  and type != ''">#{type},</if>
+            <if test="location != null  and location != ''">#{location},</if>
+            <if test="period != null ">#{period},</if>
+            <if test="manager != null  and manager != ''">#{manager},</if>
+            <if test="phone != null  and phone != ''">#{phone},</if>
+            <if test="description != null  and description != ''">#{description},</if>
+            <if test="status != null ">#{status},</if>
+            <if test="gmtCreate != null ">#{gmtCreate},</if>
+            <if test="gmtModified != null ">#{gmtModified},</if>
+            <if test="operator != null  and operator != ''">#{operator},</if>
+            <if test="isDelete != null ">#{isDelete},</if>
+            <if test="ptId != null ">#{ptId},</if>
+         </trim>
+    </insert>
+
+    <update id="updateWelfareProject" parameterType="WelfareProject">
+        update welfare_project
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="name != null  and name != ''">name = #{name},</if>
+            <if test="type != null  and type != ''">type = #{type},</if>
+            <if test="location != null  and location != ''">location = #{location},</if>
+            <if test="period != null ">period = #{period},</if>
+            <if test="manager != null  and manager != ''">manager = #{manager},</if>
+            <if test="phone != null  and phone != ''">phone = #{phone},</if>
+            <if test="description != null  and description != ''">description = #{description},</if>
+            <if test="status != null ">status = #{status},</if>
+            <if test="gmtCreate != null ">gmt_create = #{gmtCreate},</if>
+            <if test="gmtModified != null ">gmt_modified = #{gmtModified},</if>
+            <if test="operator != null  and operator != ''">operator = #{operator},</if>
+            <if test="isDelete != null ">is_delete = #{isDelete},</if>
+            <if test="ptId != null ">pt_id = #{ptId},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteWelfareProjectById" parameterType="Long">
+        delete from welfare_project where id = #{id}
+    </delete>
+
+    <delete id="deleteWelfareProjectByIds" parameterType="String">
+        delete from welfare_project where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+    
+</mapper>
